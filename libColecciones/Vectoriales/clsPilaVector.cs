@@ -1,5 +1,5 @@
-﻿using System;
-using Servicios.Colecciones.Interfaces;
+﻿using Servicios.Colecciones.Interfaces;
+using System;
 
 namespace Servicios.Colecciones.Vectoriales
 {
@@ -7,7 +7,7 @@ namespace Servicios.Colecciones.Vectoriales
     {
         #region Atributos
         private int atrLongitud;
-        private Tipo[] atrItems = new Tipo[];
+        private Tipo[] atrItems;
         private int atrCapacidad;
         private bool atrFlexible = true;
         private int atrFactorCrecimiento = 1000;
@@ -38,6 +38,14 @@ namespace Servicios.Colecciones.Vectoriales
             this.atrLongitud = 0;
             this.atrFlexible = prmFlexible;
             this.atrFactorCrecimiento = 1000;
+        }
+        public clsPilaVector(int prmCapacidad, int prmFactorCrecimiento)
+        {
+            this.atrCapacidad = prmCapacidad;
+            this.atrItems = new Tipo[prmCapacidad];
+            this.atrLongitud = 0;
+            this.atrFlexible = true;
+            this.atrFactorCrecimiento = prmFactorCrecimiento;
         }
         #endregion
         #region Operaciones
@@ -80,7 +88,7 @@ namespace Servicios.Colecciones.Vectoriales
                 return true;
 
             }
-            else return false; //borrar if
+            else return false;
         }
         public bool apilar(Tipo prmItem)
         {
@@ -95,19 +103,28 @@ namespace Servicios.Colecciones.Vectoriales
         {
             throw new NotImplementedException();
         }
-
+        public bool ponerItems(Tipo[] prmItem)
+        {
+            int i = 0;
+            while ( puedeApilar() == true )
+            {
+                atrItems[i] = prmItem[i];
+                i++;
+            }
+        }
+        public bool ajustarFlexibilidad(bool prmFlexibilidad)
+        {
+            throw new NotImplementedException();
+        }
+        public bool ajustarFactorCrecimiento(int prmFactorCrecimiento)
+        {
+            throw new NotImplementedException();
+        }
         public bool reversar()
         {
             throw new NotImplementedException();
         }
-
-        public bool ponerItems(ref Tipo prmItem)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion 
-
+        #endregion
         #endregion
     }
 }
